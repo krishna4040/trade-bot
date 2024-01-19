@@ -1,4 +1,4 @@
-# trade-bot
+# Solana-Trade-bot
 
 To install dependencies:
 

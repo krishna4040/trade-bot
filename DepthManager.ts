@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export class DepthManager {
     private market: string;
     private bids: {
