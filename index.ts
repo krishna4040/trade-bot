@@ -1,3 +1,5 @@
+import chalk from "chalk";
+import chalkAnimation from 'chalk-animation'
 import { DepthManager } from "./DepthManager";
 import { cancelAll, createOrder } from "./order";
 
@@ -6,9 +8,9 @@ const usdtInrMarket = new DepthManager("B-USDT_INR");
 const solUsdtMarket = new DepthManager("B-SOL_USDT");
 
 setInterval(() => {
-    console.log(solInrMarket.getRelevantDepth());
-    console.log(usdtInrMarket.getRelevantDepth());
-    console.log(solUsdtMarket.getRelevantDepth());
+    console.log(chalk.red("SOL_INR_MARKET---->"), solInrMarket.getRelevantDepth());
+    console.log(chalk.green("USDT_INR_MARKET---->"), usdtInrMarket.getRelevantDepth());
+    console.log(chalk.blue("SOL_USDT_MARKET---->"), solUsdtMarket.getRelevantDepth());
 
     // sell SOL for INR, buy USDT from INR, buy SOL from INR
     // lets say u start with 1 sol
@@ -17,7 +19,7 @@ setInterval(() => {
     const canGetUsdt = canGetInr / usdtInrMarket.getRelevantDepth().lowestAsk;
     const canGetSol = canGetUsdt / solInrMarket.getRelevantDepth().lowestAsk;
 
-    console.log(`You can convert 1 SOL into ${canGetSol} SOL`);
+    console.log(chalkAnimation.rainbow(`You can convert 1 SOL into ${canGetSol} SOL`));
 
     const initialInr = solInrMarket.getRelevantDepth().highestBid + 0.001;
     const canGetUsdt2 = solUsdtMarket.getRelevantDepth().highestBid;

@@ -1,9 +1,9 @@
 export class DepthManager {
     private market: string;
-    private bids: {
+    private bids!: {
         [key: string]: string
     };
-    private asks: {
+    private asks!: {
         [key: string]: string
     };
     constructor(market: string) {
