@@ -16,8 +16,8 @@ export class DepthManager {
     pollMarket = async () => {
         const res = await fetch(`https://public.coindcx.com/market_data/orderbook?pair=${this.market}`);
         const depth = await res.json();
-        this.bids = depth?.bids;
-        this.asks = depth?.asks;
+        this.bids = depth?.bids!;
+        this.asks = depth?.asks!;
     }
 
     getRelevantDepth = () => {
@@ -33,6 +33,7 @@ export class DepthManager {
                 lowestAsk = parseFloat(this.asks[x]);
             }
         });
+        // This are the highest and lowest quantities
         return {
             highestBid,
             lowestAsk

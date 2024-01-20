@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import chalkAnimation from 'chalk-animation'
 import { DepthManager } from "./DepthManager";
 import { cancelAll, createOrder } from "./order";
 
@@ -19,7 +18,7 @@ setInterval(() => {
     const canGetUsdt = canGetInr / usdtInrMarket.getRelevantDepth().lowestAsk;
     const canGetSol = canGetUsdt / solInrMarket.getRelevantDepth().lowestAsk;
 
-    console.log(chalkAnimation.rainbow(`You can convert 1 SOL into ${canGetSol} SOL`));
+    console.log(chalk.bgYellow(`You can convert 1 SOL into ${canGetSol} SOL`));
 
     const initialInr = solInrMarket.getRelevantDepth().highestBid + 0.001;
     const canGetUsdt2 = solUsdtMarket.getRelevantDepth().highestBid;
@@ -31,9 +30,9 @@ setInterval(() => {
 
 async function main() {
     const highestBid = solInrMarket.getRelevantDepth().highestBid;
-    await createOrder("buy", "XAIINR", parseFloat((highestBid + 0.001).toFixed(3)), 1, Math.random().toString());
+    await createOrder("buy", "SOLINR", parseFloat((highestBid + 0.001).toFixed(3)), 1, Math.random().toString());
     await new Promise((r) => setTimeout(() => r, 10000));
-    await cancelAll("XAIINR");
+    await cancelAll("SOLINR");
     await new Promise((r) => setTimeout(r, 1000));
     main();
 }
